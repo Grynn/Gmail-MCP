@@ -2,10 +2,10 @@
 FROM node:20-alpine
 
 # Add metadata labels
-LABEL org.opencontainers.image.title="Email MCP Server"
-LABEL org.opencontainers.image.description="MCP server for email operations using IMAP/SMTP"
+LABEL org.opencontainers.image.title="Gmail MCP"
+LABEL org.opencontainers.image.description="Gmail MCP server for email operations using IMAP/SMTP"
 LABEL org.opencontainers.image.version="1.0.0"
-LABEL org.opencontainers.image.source="https://github.com/yourusername/emailMCP"
+LABEL org.opencontainers.image.source="https://github.com/Sallytion/Gmail-MCP"
 LABEL org.opencontainers.image.licenses="MIT"
 
 # Set working directory

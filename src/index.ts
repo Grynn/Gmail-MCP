@@ -29,7 +29,7 @@ class EmailMCPServer {
   constructor() {
     this.server = new Server(
       {
-        name: 'email-mcp-server',
+        name: 'gmail-mcp',
         version: '1.0.0',
       },
       {
@@ -232,7 +232,7 @@ class EmailMCPServer {
 
     const transport = new StdioServerTransport();
     await this.server.connect(transport);
-    console.error('Email MCP server running on stdio');
+    console.error('Gmail MCP server running on stdio');
   }
 }
 

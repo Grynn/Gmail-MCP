@@ -1,9 +1,9 @@
 version: '3.8'
 
 services:
-  email-mcp-server:
+  gmail-mcp:
     build: .
-    container_name: email-mcp-server
+    container_name: gmail-mcp
     environment:
       - EMAIL_ADDRESS=${EMAIL_ADDRESS}
       - EMAIL_PASSWORD=${EMAIL_PASSWORD}

@@ -1,6 +1,6 @@
-# Email MCP Server
+# Gmail MCP
 
-A Model Context Protocol (MCP) server for email operations using IMAP/SMTP with app password authentication.
+A Model Context Protocol (MCP) server for Gmail operations using IMAP/SMTP with app password authentication.
 
 ## Features
 
@@ -153,10 +153,10 @@ Just update the IMAP/SMTP settings in your `.env` file!
 ```json
 {
   "mcpServers": {
-    "email-server": {
+    "gmail-mcp": {
       "command": "node",
-      "args": ["C:\\path\\to\\your\\emailMCP\\dist\\index.js"],
-      "cwd": "C:\\path\\to\\your\\emailMCP",
+      "args": ["C:\\path\\to\\your\\Gmail-MCP\\dist\\index.js"],
+      "cwd": "C:\\path\\to\\your\\Gmail-MCP",
       "env": {
         "NODE_ENV": "production",
         "EMAIL_ADDRESS": "your-email@gmail.com",

@@ -1,7 +1,7 @@
 {
-  "name": "email-mcp-server",
+  "name": "gmail-mcp",
   "version": "1.0.0",
-  "description": "MCP server for email operations using IMAP/SMTP with app password authentication",
+  "description": "Gmail MCP server for email operations using IMAP/SMTP with app password authentication",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {
@@ -9,9 +9,9 @@
     "start": "node dist/index.js",
     "dev": "tsx src/index.ts",
     "watch": "tsc --watch",
-    "docker:build": "docker build -t email-mcp-server .",
-    "docker:logs": "docker-compose logs -f email-mcp-server",
-    "docker:shell": "docker-compose run --rm email-mcp-server sh"
+    "docker:build": "docker build -t gmail-mcp .",
+    "docker:logs": "docker-compose logs -f gmail-mcp",
+    "docker:shell": "docker-compose run --rm gmail-mcp sh"
   },
   "keywords": [
     "mcp",
