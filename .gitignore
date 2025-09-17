@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+.nyc_output/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Docker documentation (internal use only)
+DOCKER_PUBLISHING.md
+MCP_CATALOG_SUBMISSION.md
+publish.sh
+publish.bat
+
+# Test files (if any)
+test-*.mjs
+test-*.js
+*-test.mjs
+*-test.js
+
+# Temporary files
+*.tmp
+*.temp
+
+# Docker volumes and data
+docker-data/
+volumes/

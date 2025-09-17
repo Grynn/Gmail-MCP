@@ -1,0 +1,39 @@
+{
+  "name": "email-mcp-server",
+  "version": "1.0.0",
+  "description": "MCP server for email operations using IMAP/SMTP with app password authentication",
+  "main": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "watch": "tsc --watch",
+    "docker:build": "docker build -t email-mcp-server .",
+    "docker:logs": "docker-compose logs -f email-mcp-server",
+    "docker:shell": "docker-compose run --rm email-mcp-server sh"
+  },
+  "keywords": [
+    "mcp",
+    "email",
+    "imap",
+    "smtp",
+    "server"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "dotenv": "^16.4.5",
+    "imap": "^0.8.19",
+    "nodemailer": "^6.9.16",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@types/imap": "^0.8.40",
+    "@types/node": "^22.9.0",
+    "@types/nodemailer": "^6.4.19",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  }
+}
