@@ -13,7 +13,7 @@ WORKDIR /app
 
 # Install dependencies first (for better caching)
 COPY package*.json ./
-RUN npm ci --only=production && npm cache clean --force
+RUN npm ci && npm cache clean --force
 
 # Copy source code and build
 COPY . .
@@ -21,7 +21,7 @@ RUN npm run build
 
 # Remove dev dependencies and source files to reduce image size
 RUN rm -rf src/ tsconfig.json && \
-    npm prune --production
+    npm prune --omit=dev
 
 # Set environment variables
 ENV NODE_ENV=production
