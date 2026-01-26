@@ -17,9 +17,47 @@ export const SendMessageSchema = z.object({
   bcc: z.string().email().optional(),
 });
 
+export const GetMessageSchema = z.object({
+  id: z.string().min(1, 'Message id cannot be empty'),
+  format: z.enum(['html', 'text', 'raw']).optional().default('html'),
+  saveRawToFile: z.boolean().optional().default(false),
+  mailbox: z.string().min(1).optional().default('INBOX'),
+});
+
+export const AttachmentFilterSchema = z.object({
+  name: z.string().min(1).optional(),
+  nameContains: z.string().min(1).optional(),
+  nameRegex: z.string().min(1).optional(),
+  nameRegexFlags: z.string().optional(),
+  mimeTypes: z.array(z.string().min(1)).optional(),
+});
+
+export const DownloadAttachmentsSchema = z.object({
+  messageIds: z.union([
+    z.string().min(1),
+    z.array(z.string().min(1)).min(1),
+  ]),
+  idType: z.enum(['message-id', 'uid']).optional().default('message-id'),
+  mailbox: z.string().min(1).optional().default('INBOX'),
+  filter: AttachmentFilterSchema.optional(),
+});
+
+export const PeekMessageSchema = z.object({
+  messageIds: z.union([
+    z.string().min(1),
+    z.array(z.string().min(1)).min(1),
+  ]),
+  idType: z.enum(['message-id', 'uid']).optional().default('message-id'),
+  mailbox: z.string().min(1).optional().default('INBOX'),
+});
+
 export type ListMessagesParams = z.infer<typeof ListMessagesSchema>;
 export type FindMessageParams = z.infer<typeof FindMessageSchema>;
 export type SendMessageParams = z.infer<typeof SendMessageSchema>;
+export type GetMessageParams = z.infer<typeof GetMessageSchema>;
+export type AttachmentFilterParams = z.infer<typeof AttachmentFilterSchema>;
+export type DownloadAttachmentsParams = z.infer<typeof DownloadAttachmentsSchema>;
+export type PeekMessageParams = z.infer<typeof PeekMessageSchema>;
 
 // Response types
 export interface EmailMessage {
@@ -44,4 +82,63 @@ export interface SendResult {
   messageId: string;
   success: boolean;
   message: string;
+}
+
+export interface MessageContentResult {
+  id: string;
+  format: 'html' | 'text' | 'raw';
+  body: string;
+  mailbox: string;
+  rawFilePath?: string;
+  rawSize?: number;
+  hasHtml?: boolean;
+  hasText?: boolean;
+}
+
+export interface AttachmentResult {
+  filename?: string;
+  contentType: string;
+  size: number;
+  contentDisposition?: string;
+  contentId?: string;
+  savedTo?: string;
+  inlineContent?: string;
+}
+
+export interface MessageAttachmentsResult {
+  id: string;
+  idType: 'message-id' | 'uid';
+  mailbox: string;
+  found: boolean;
+  uid?: string;
+  attachments: AttachmentResult[];
+  error?: string;
+}
+
+export interface AttachmentMeta {
+  filename?: string;
+  contentType: string;
+  size: number;
+  contentDisposition?: string;
+  contentId?: string;
+}
+
+export interface MessagePeekResult {
+  id: string;
+  idType: 'message-id' | 'uid';
+  mailbox: string;
+  found: boolean;
+  uid?: string;
+  subject?: string;
+  from?: string;
+  to?: string;
+  date?: string;
+  messageId?: string;
+  hasHtml?: boolean;
+  hasText?: boolean;
+  htmlSize?: number;
+  textSize?: number;
+  attachmentCount: number;
+  attachments: AttachmentMeta[];
+  error?: string;
 }
