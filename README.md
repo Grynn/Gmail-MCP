@@ -7,6 +7,10 @@ A Model Context Protocol (MCP) server for Gmail operations using IMAP/SMTP with 
 - **listMessages**: List the last 10 messages (or more if specified)
 - **findMessage**: Search for messages containing specific words or phrases  
 - **sendMessage**: Send emails with specified recipient and message body
+- **getMessage**: Fetch a single message body as HTML, text, or raw, with optional raw .eml export
+- **downloadAttachments**: Download attachments by Message-ID or UID, with filters
+- **peekMessage**: Peek message headers/body metadata and attachment summaries
+- **headMessage**: Alias for peekMessage
 
 ## Simple Setup (No OAuth Required!)
 
@@ -123,6 +127,38 @@ Just update the IMAP/SMTP settings in your `.env` file!
   "to": "recipient@example.com",
   "subject": "Hello from MCP!",
   "body": "This email was sent via the Email MCP Server"
+}
+```
+
+### Fetch Message Body
+```json
+{
+  "id": "12345",
+  "format": "text",
+  "saveRawToFile": true
+}
+```
+
+### Download Attachments
+```json
+{
+  "messageIds": [
+    "<abc123@example.com>",
+    "<def456@example.com>"
+  ],
+  "idType": "message-id",
+  "filter": {
+    "nameContains": "invoice",
+    "mimeTypes": ["application/pdf"]
+  }
+}
+```
+
+### Peek Message Metadata
+```json
+{
+  "messageIds": "<abc123@example.com>",
+  "idType": "message-id"
 }
 ```
 
